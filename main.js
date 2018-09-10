@@ -47,7 +47,7 @@ for (let [key, value] of stat) {     // get data sorted
 }
 
 const endTime = new Date().getTime();
-console.log(`idő: ${(endTime-starTime)/1000} s`);
+console.log(`elapsed time: ${(endTime-starTime)/1000} s`);
 
 function sorsolas() {
     const index = Math.floor(Math.random() * Math.floor(tempSzamok.length));
