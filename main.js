@@ -34,15 +34,12 @@ for (let x = 0; x < 100000; x++) {
     });
 }
 
-stat[Symbol.iterator] = function* () {
-    yield* [...this.entries()].sort((a, b) => b[1] - a[1]);
-}
-//console.log(stat)
+
 let counter = 0;
-for (let [key, value] of stat) {     // get data sorted
-    console.log(`szám: ${key}, érték: ${value}`);
+for (let [key, value] of (new Map([...stat.entries()].sort((a,b) => b[1] - a[1])))) {     // get data sorted
     if(counter === 5)
         break;
+    console.log(`szám: ${key}, érték: ${value}`);
     counter++;
 }
 
