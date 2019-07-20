@@ -1,11 +1,15 @@
 let szamok = [];
+let tempSzamok = szamok;
+const MAX_NUMBERS = 91;
+const DRAW_COUNT = 5;
+
+function lottoSorsolas(maxNumbers= MAX_NUMBERS, drawCount = DRAW_COUNT){
+ 
 
 const starTime = new Date().getTime();
 
 let stat = new Map();
-let tempSzamok = szamok;
-const MAX_NUMBERS = 91;
-const DRAW_COUNT = 5;
+
 let i = 1;
 while (i < MAX_NUMBERS) {
     szamok.push(i++);
@@ -36,15 +40,19 @@ for (let x = 0; x < 100000; x++) {
 
 
 let counter = 0;
+let arr =[];
 for (let [key, value] of (new Map([...stat.entries()].sort((a,b) => b[1] - a[1])))) {     // get data sorted
-    if(counter === 5)
+    if(counter === drawCount)
         break;
     console.log(`szám: ${key}, érték: ${value}`);
+    arr.push(key);
     counter++;
 }
 
+console.log(`L${drawCount},`+arr)
 const endTime = new Date().getTime();
 console.log(`elapsed time: ${(endTime-starTime)/1000} s`);
+}
 
 function sorsolas() {
     const index = Math.floor(Math.random() * Math.floor(tempSzamok.length));
@@ -53,3 +61,6 @@ function sorsolas() {
     tempSzamok = tempSzamok.filter(x => x != sorsoltSzam);
     return sorsoltSzam;
 }
+
+
+lottoSorsolas(maxNumbers= 90, drawCount = 5);
